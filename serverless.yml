@@ -1,0 +1,27 @@
+service: where-its-at
+
+frameworkVersion: "4"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  getAllEvents:
+    handler: dist/functions/getAllEvents/index.handler
+    events:
+      - http:
+          path: events
+          method: get
+  orderTicket:
+    handler: dist/functions/orderTicket/index.handler
+    events:
+      - http:
+          path: order
+          method: post
+
+package:
+  exclude:
+    - node_modules/**
+    - .serverless/**
+    - .git/**
